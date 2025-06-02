@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UHT Articea</title>
+    <meta name="description" content="UHT Website" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet"> -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=LoRa:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mirza:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icon/favicon-16x16.png">
+    <link rel="manifest" href="images/icon/site.webmanifest">
+    <link rel="mask-icon" href="images/icon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="images/icon/favicon.ico">
+    <link rel="stylesheet" href="index.css">
+    <script nonce='727c1f0a-0d5c-4fb8-b95f-9d8a9efcbca5'>
+            !function() {
+                "use strict";
+                function t(t, n) {
+                    let e;
+                    return (...o)=>{
+                        clearTimeout(e),
+                        e = setTimeout((()=>{
+                            t(...o)
+                        }
+                        ), n)
+                    }
+                }
+                class n {
+                    constructor() {
+                        this.callbacks = [],
+                        window.addEventListener("DOMContentLoaded", (()=>this.onDOMContentLoaded()))
+                    }
+                    onDOMContentLoaded() {
+                        this.callbacks.sort(((t,n)=>t.priority - n.priority)).forEach((({callback: t})=>t()))
+                    }
+                    runOnLoad(t) {
+                        "loading" === document.readyState ? this.callbacks.push(t) : t.callback()
+                    }
+                }
+                function e(t, e=Number.MAX_VALUE) {
+                    var o;
+                    (window.canva_scriptExecutor = null !== (o = window.canva_scriptExecutor) && void 0 !== o ? o : new n).runOnLoad({
+                        callback: t,
+                        priority: e
+                    })
+                }
+                class o {
+                    constructor(t) {
+                        this.items = [],
+                        this.previousWidth = document.documentElement.clientWidth,
+                        this.previousHeight = window.innerHeight;
+                        const n = t((()=>this.onWindowResize()), 100);
+                        window.addEventListener("resize", n)
+                    }
+                    onWindowResize() {
+                        const t = document.documentElement.clientWidth
+                          , n = window.innerHeight
+                          , e = this.previousWidth !== t
+                          , o = this.previousHeight !== n;
+                        this.items.forEach((t=>{
+                            const n = ()=>{
+                                t.callback(),
+                                t.executed = !0
+                            }
+                            ;
+                            (!t.executed || e && t.options.runOnWidthChange || o && t.options.runOnHeightChange) && n()
+                        }
+                        )),
+                        this.previousWidth = t,
+                        this.previousHeight = n
+                    }
+                    runOnResize(t, n) {
+                        this.items.push({
+                            callback: t,
+                            options: n,
+                            executed: n.runOnLoad
+                        }),
+                        this.items.sort(((t,n)=>t.options.priority - n.options.priority)),
+                        n.runOnLoad && e(t, n.priority)
+                    }
+                }
+                function i(n, e, i=t) {
+                    var r;
+                    (window.canva_debounceResize = null !== (r = window.canva_debounceResize) && void 0 !== r ? r : new o(i)).runOnResize(n, {
+                        runOnLoad: !1,
+                        runOnWidthChange: !0,
+                        runOnHeightChange: !1,
+                        priority: Number.MAX_VALUE,
+                        ...e
+                    })
+                }
+                const r = "--minfs"
+                  , c = "--rzf"
+                  , a = "--rfso"
+                  , s = "--bfso";
+                function u(t, n, e=.001) {
+                    return Math.abs(t - n) < e
+                }
+                function d(t, n) {
+                    return window.getComputedStyle(t).getPropertyValue(n)
+                }
+                function l(t, n, e) {
+                    t.style.setProperty(n, e)
+                }
+                function m(t, n) {
+                    const e = document.createElement("div");
+                    e.style.setProperty(t, n),
+                    document.body.append(e);
+                    const o = d(e, t);
+                    return e.remove(),
+                    o
+                }
+                function f() {
+                    const t = function() {
+                        const t = parseFloat(m("font-size", "0.1px"));
+                        return t > 1 ? t : 0
+                    }()
+                      , n = function(t) {
+                        const n = 2 * Math.max(t, 1);
+                        return n / parseFloat(m("font-size", `${n}px`))
+                    }(t);
+                    if (function(t) {
+                        if (0 === t)
+                            return;
+                        l(document.documentElement, r, `${t}px`),
+                        i((()=>{
+                            const n = 100 * t
+                              , {clientWidth: e} = document.documentElement;
+                            l(document.documentElement, c, n > e ? (e / n).toPrecision(4) : null)
+                        }
+                        ), {
+                            runOnLoad: !0
+                        })
+                    }(t * Math.max(1, n)),
+                    u(n, 1))
+                        return;
+                    const e = u(parseFloat(d(document.documentElement, "font-size")), parseFloat(m("grid-template-columns", "1rem")));
+                    l(document.documentElement, e ? a : s, n.toPrecision(4))
+                }
+                function h() {
+                    document.querySelectorAll("img, image, video, svg").forEach((t=>t.addEventListener("contextmenu", (t=>t.preventDefault()))))
+                }
+                const p = t=>{
+                    const n = {
+                        type: "CLICKED_LINK",
+                        link: t.currentTarget.getAttribute("href")
+                    };
+                    navigator.sendBeacon("_api/analytics/events", JSON.stringify(n))
+                }
+                ;
+                function g() {
+                    [...document.querySelectorAll("a[href][data-interstitial-link]")].forEach((t=>{
+                        t.addEventListener("click", p)
+                    }
+                    ))
+                }
+                const v = "--sbw"
+                  , w = "--inner1Vh";
+                function y(t, n, e) {
+                    t.style.setProperty(n, e)
+                }
+                function E() {
+                    y(document.documentElement, w, window.innerHeight / 100 + "px"),
+                    function() {
+                        const t = window.innerWidth - document.documentElement.clientWidth;
+                        y(document.documentElement, v, t >= 0 ? `${t}px` : null)
+                    }()
+                }
+                var b;
+                const O = "undefined" != typeof window ? null === (b = window.navigator) || void 0 === b ? void 0 : b.userAgent : void 0;
+                const L = !(!O || (A = O,
+                !A.match(/AppleWebKit\//) || A.match(/Chrome\//) || A.match(/Chromium\//)));
+                var A;
+                function x() {
+                    document.querySelectorAll("svg").forEach((t=>t.style.background = "url('data:image/png;base64,')"))
+                }
+                let C;
+                function W() {
+                    C || (C = Array.from(document.querySelectorAll("foreignObject")).filter((t=>0 === t.getBoundingClientRect().width)));
+                    const t = function() {
+                        const t = document.createElement("div");
+                        t.style.fontSize = "100vw",
+                        document.body.append(t);
+                        const n = parseFloat(window.getComputedStyle(t).fontSize);
+                        return t.remove(),
+                        n / window.innerWidth
+                    }();
+                    Array.from(C).forEach((n=>function(t) {
+                        return new Promise(((n,e)=>{
+                            const o = t.querySelector("img");
+                            o && !o.complete ? (o.addEventListener("load", (()=>n())),
+                            o.addEventListener("error", (()=>e()))) : n()
+                        }
+                        ))
+                    }(n).finally((()=>function(t, n) {
+                        const e = Array.from(t.children);
+                        e.forEach(((t,n)=>{
+                            if (t.hasAttribute("data-foreign-object-container"))
+                                t.style.transformOrigin = "",
+                                t.style.transform = "";
+                            else {
+                                const o = document.createElement("div");
+                                o.setAttribute("data-foreign-object-container", ""),
+                                t.insertAdjacentElement("beforebegin", o),
+                                t.remove(),
+                                o.append(t),
+                                e[n] = o
+                            }
+                        }
+                        ));
+                        const o = t.getScreenCTM();
+                        if (!o)
+                            return;
+                        const {a: i, b: r, c: c, d: a} = o.scale(n);
+                        e.forEach((t=>{
+                            if (!t.hasAttribute("data-foreign-object-container"))
+                                return;
+                            const {style: n} = t;
+                            n.transformOrigin = "0px 0px",
+                            n.transform = `matrix(${i}, ${r}, ${c}, ${a}, 0, 0)`
+                        }
+                        ))
+                    }(n, t)))))
+                }
+                [function() {
+                    e(f)
+                }
+                , function() {
+                    i(E, {
+                        runOnLoad: !0,
+                        runOnHeightChange: !0,
+                        priority: 1
+                    })
+                }
+                , function() {
+                    L && i(W, {
+                        runOnLoad: !0
+                    })
+                }
+                , function() {
+                    L && e(x)
+                }
+                , function() {
+                    e(h)
+                }
+                , function() {
+                    e(g)
+                }
+                ].forEach((t=>t()))
+            }();
+        </script>
+</head>
+
+<body>
+    <div class="sticky-top" style="user-select: none;">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger" id="hamburger-9">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                </button>  
+                <a class="navbar-brand" href="index">
+                    <img class="navbar-brand-dark" src="images/icon/android-chrome-512x512.png" alt="Logo">
+                </a>              
+                <div class="navbar-collapse collapse" id="navbarNav">
+                    <div class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-links" href="index">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-links"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            How It Works
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="HowItWorks#Zr4YOqX3fqU9MwKY">For Customers</a>
+                            <a class="dropdown-item" href="HowItWorks#DxGPdz8xXKlY5iFX">For Artists</a>
+                            <a class="dropdown-item" href="HowItWorks#EfuhyH842GfsIb6B">Community Engagement</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-links" style="cursor: pointer;" data-toggle="modal" data-target="#staticBackdrop">Contact Us</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Sticky Line Below the Navbar -->
+        <div class="navbar-line"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="user-select: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Contact Us</h5>
+                
+            </div>
+            <div class="modal-body">
+              <a href="mailto:team@uhtarticea.com"> 
+                <span>team@uhtarticea.com</span>
+              </a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div id="root">
+        <a id="page-1" aria-hidden="true" style="visibility:hidden;"></a>
+        <a id="page-2" aria-hidden="true" style="visibility:hidden;"></a>
+        <a id="page-3" aria-hidden="true" style="visibility:hidden;"></a>
+        <section id="mH85Jun5OHnBCG0b"
+            style="position:relative;overflow:hidden;display:grid;align-items:center;grid-template-columns:auto 100rem auto;z-index:0;margin-top:-1px;user-select: none;">
+            <div id="pNEywbRAJrDVM79C"
+                style="grid-area:1 / 1 / 2 / 4;display:grid;position:absolute;min-height:100%;min-width:100%;">
+                <div id="d77Y2CZ4MLdy9hdf" style="z-index:0;">
+                    <div id="KIqY6WslNWi0xd5I"
+                        style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                        <div id="phLikzE3tI34XeaY" style="width:100%;height:100%;opacity:1.0;">
+                            <div id="QGrGPjNmlhu6lH6p"
+                                style="background-color:#ffffff;opacity:1.0;transform:scale(1, 1);width:100%;height:100%;overflow:hidden;position:relative;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="IubvkmrTfHmEV1AR" style="display:grid;position:relative;grid-area:1 / 2 / 2 / 3;">
+                <div id="I1eh6LGD5OmNGqxc">
+                    <div id="QHLag0KxjTu7TKFF" style="display:grid;position:relative;">
+                        <div id="oU4qCabTolJ6crqo" style="display:grid;position:relative;grid-area:2 / 2 / 3 / 3;">
+                            <div id="LJoZtNxmfmv7o23w" style="z-index:2;">
+                                <div id="io2DvApOfDn2b4tO"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <svg id="HIRdWXVlpuqNBfX8" viewBox="0 0 39.417 11.7824" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="N8nAlSWZqLx1r9id" style="transform:scale(1, 1);">
+                                            <path id="IAxIn9cqjeYNZ2mS"
+                                                d="M1.97530783,0 L37.44170725,0 C37.96559146,0 38.46801873,0.20811219 38.83846081,0.57855427 39.20890289,0.94899634 39.41701508,1.45142362 39.41701508,1.97530783 L39.41701508,9.80711615 C39.41701507,10.89804853 38.53263964,11.78242397 37.44170725,11.78242397 L1.97530783,11.78242397 C0.88437544,11.78242397 0,10.89804854 0,9.80711615 L0,1.97530783 C0,0.88437544 0.88437544,0 1.97530783,0 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="k4Sgw4Ki0gCRBw03" style="z-index:3;">
+                                <div id="qu0VbyvrcKKOo2t3"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <div id="jXZAu82lwhyTQG3o"
+                                        style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction: column;justify-content: center;width:100%;height:100%;">
+                                        <p id="O7RbuVrQOhpRPp4P"
+                                            style="color:#000000;font-family: Mirza;line-height:1.36956373em;text-align:center;white-space: nowrap;letter-spacing:0em;">
+                                            <span id="y6dwm4jXuQWecxD3" style="color:#000000;font-weight:700;">Our
+                                                Commitment</span>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="HMSEJilFaJUT6V7N">
+                    <div id="KCYL0hK5IE4haJPi" style="display:grid;position:relative;">
+                        <div id="loBrW344ShQPNyJf" style="display:grid;position:relative;grid-area:2 / 2 / 3 / 3;">
+                            <div id="QWU1yEXEDmtr8bgx" style="z-index:5;">
+                                <div id="JthWyInlrNK8WQMC"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <svg id="EdfYKhAWUhbQX2xX" viewBox="0 0 131.7849 76.0599" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="ARihfw4lCri0E5rl" style="transform:scale(1, 1);">
+                                            <path id="tvJkz50zMUR6jkWw"
+                                                d="M10.00000335,0 L121.78484773,0 C127.30769707,0 131.78485107,4.477154 131.78485107,10.00000335 L131.78485107,66.05987977 C131.78485107,71.58272912 127.30769708,76.05988312 121.78484773,76.05988312 L10.00000335,76.05988312 C4.477154,76.05988312 0,71.58272912 0,66.05987977 L0,10.00000335 C0,4.477154 4.477154,0 10.00000335,0 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                    <svg id="f1kX7Dl6WQqlekzb" viewBox="0 0 124.4444 77.2294" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="AgMvRnuiFReSwCf0" style="transform:scale(1, 1);">
+                                            <path id="w66rXk6s5TpjZnit"
+                                                d="M9.44299701,0 L115.00144574,0 C117.50588426,0 119.9077475,0.99488433 121.67865296,2.76578979 123.44955842,4.53669525 124.44444275,6.93855849 124.44444275,9.44299701 L124.44444275,67.78636548 C124.44444275,70.290804 123.44955842,72.69266724 121.67865296,74.4635727 119.9077475,76.23447816 117.50588426,77.22936249 115.00144574,77.22936249 L9.44299701,77.22936249 C4.22777377,77.22936249 0,73.00158872 0,67.78636548 L0,9.44299701 C0,4.22777377 4.22777377,0 9.44299701,0 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                    <svg id="nCgPhU25nB6z0mw3" viewBox="0 0 95.2778 63.9858" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="wAX857nHza9ICrOb" style="transform:scale(1, 1);">
+                                            <path id="BFVLbudRsFHpkZBu"
+                                                d="M7.22979885,0 L88.04797977,0 C89.96544165,0 91.80436928,0.76170876 93.16021957,2.11755905 94.51606987,3.47340935 95.27777863,5.31233698 95.27777863,7.22979885 L95.27777863,56.75597996 C95.27777863,58.67344183 94.51606986,60.51236946 93.16021957,61.86821975 91.80436927,63.22407005 89.96544165,63.98577881 88.04797977,63.98577881 L7.22979885,63.98577881 C5.31233698,63.98577881 3.47340935,63.22407005 2.11755906,61.86821975 0.76170876,60.51236946 0,58.67344183 0,56.75597996 L0,7.22979885 C0,5.31233698 0.76170876,3.47340935 2.11755906,2.11755906 3.47340935,0.76170876 5.31233698,0 7.22979885,0 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="MJYIZTwHH9aWeKtg" style="z-index:6;">
+                                <div id="CO4fhLGv7jzzuadJ"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <div id="wTmxhCWZbo3zU7BG"
+                                        style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                                        <p id="q3jwWo2TAKCcJjaE"
+                                            style="color:#000000;font-family:Lora;line-height:1.3977098em;text-align:center;">
+                                            <span id="yt4b455WGOTvhQZ1" style="color:#000000;font-weight:700;">1)
+                                                Quality Assurance</span>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="gbox0ZKCdrUaEy1F" style="z-index:7;">
+                                <div id="ZXxIlLwUabSoHtCz"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <div id="Pxrxd3rvLf7oDM9J"
+                                        style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                                        <p id="aBPyAu6a3SGeTxBe"
+                                            style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                            <span id="IQQaZxFAY8bygG1t" style="color:#000000;">We are committed to
+                                                ensuring the highest quality of handmade products. Each item is
+                                                carefully reviewed to meet our standards of craftsmanship and
+                                                originality.</span>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="oyuzKCiaU9XB8jrE">
+                    <div id="OKj38NwOhLtD9UJp" style="display:grid;position:relative;">
+                        <div id="DQUibyg9D5tqiga3" style="z-index:9;">
+                            <div id="Mq7WHHhI9S5VRUqS"
+                                style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                <svg id="UBP9S5iySKZGWggo" viewBox="0 0 131.7849 76.0599" preserveAspectRatio="none"
+                                    style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                    <g id="tQ0lxePAcQwY8rPp" style="transform:scale(1, 1);">
+                                        <path id="KtxXo8D69g7M8cK5"
+                                            d="M10.00000335,0 L121.78484773,0 C127.30769707,0 131.78485107,4.477154 131.78485107,10.00000335 L131.78485107,66.05987977 C131.78485107,71.58272912 127.30769708,76.05988312 121.78484773,76.05988312 L10.00000335,76.05988312 C4.477154,76.05988312 0,71.58272912 0,66.05987977 L0,10.00000335 C0,4.477154 4.477154,0 10.00000335,0 Z"
+                                            style="fill:#b08e6a;opacity:1.0;"></path>
+                                    </g>
+                                </svg>
+                                <svg id="vnLHXfSNz8mTX0YZ" viewBox="0 0 124.4444 79.493" preserveAspectRatio="none"
+                                    style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                    <g id="f6cgMhHr2Qjm39SS" style="transform:scale(1, 1);">
+                                        <path id="avbayJAgYPn8hndh"
+                                            d="M9.44299701,0 L115.00144574,0 C117.50588426,0 119.9077475,0.99488433 121.67865296,2.76578979 123.44955842,4.53669525 124.44444275,6.93855849 124.44444275,9.44299701 L124.44444275,70.05002209 C124.44444275,75.26524533 120.21666898,79.4930191 115.00144574,79.4930191 L9.44299701,79.4930191 C6.93855849,79.4930191 4.53669525,78.49813477 2.76578979,76.72722931 0.99488433,74.95632385 0,72.55446061 0,70.05002209 L0,9.44299701 C0,4.22777377 4.22777377,0 9.44299701,0 Z"
+                                            style="fill:#b08e6a;opacity:1.0;"></path>
+                                    </g>
+                                </svg>
+                                <svg id="KfXIh4bEikjd46mb" viewBox="0 0 95.2778 70.4542" preserveAspectRatio="none"
+                                    style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                    <g id="nqF2w8DBrqIi2Yt0" style="transform:scale(1, 1);">
+                                        <path id="p66igmiL76eo6U1u"
+                                            d="M7.22979885,0 L88.04797977,0 C89.96544165,0 91.80436928,0.76170876 93.16021957,2.11755905 94.51606987,3.47340935 95.27777863,5.31233698 95.27777863,7.22979885 L95.27777863,63.22444767 C95.27777863,65.14190954 94.51606986,66.98083717 93.16021957,68.33668746 91.80436927,69.69253776 89.96544164,70.45424652 88.04797977,70.45424652 L7.22979885,70.45424652 C5.31233698,70.45424652 3.47340935,69.69253776 2.11755906,68.33668747 0.76170876,66.98083717 0,65.14190954 0,63.22444767 L0,7.22979885 C0,5.31233698 0.76170876,3.47340935 2.11755906,2.11755906 3.47340935,0.76170876 5.31233698,0 7.22979885,0 Z"
+                                            style="fill:#b08e6a;opacity:1.0;"></path>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div id="OMAsPrvItVly87nU" style="z-index:19;">
+                            <div id="pwCBWOySbQlssrgs"
+                                style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                <div id="rl2exVBTR3iNcgeP"
+                                    style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                                    <p id="xaJpCWVFryupwxXF"
+                                        style="color:#000000;font-family:Lora;line-height:1.3977098em;text-align:center;">
+                                        <span id="TBCCg59LXyBQscNl" style="color:#000000;font-weight:700;">3) Customer
+                                            Support</span>
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="R3P52FnpU1oRh0o0" style="z-index:20;">
+                            <div id="XcO7AX2u1aQbtcl7"
+                                style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                <div id="ECCr3fzJn9gqFGd3"
+                                    style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                                    <p id="BQUKOZ4YAZVJVDNR"
+                                        style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                        <span id="VNnBGZZ3hJNSVDBE" style="color:#000000;">Our dedicated customer
+                                            support team is here to help you with any questions or issues. </span>
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ijDfh4oMuTHLHJhB">
+                    <div id="wdFwIq19eMEa8ecC" style="display:grid;position:relative;">
+                        <div id="paSvoEianoH41bGY" style="display:grid;position:relative;grid-area:2 / 2 / 3 / 3;">
+                            <div id="A0ubap3tS8axn7fj" style="z-index:15;">
+                                <div id="Mh90nlcf2XkxC0Pm"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <svg id="v4VdHm8BoG3fhRUj" viewBox="0 0 68.9297 75.1739" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="j8WRgA5jT69tOmbb" style="transform:scale(1, 1);">
+                                            <path id="gRR2AM8R440f7TPF"
+                                                d="M34.46482916,0 L68.92965831,16 L68.92965831,59.17392921 L34.46482916,75.17392921 L0,59.17392921 L0,16 L34.46482916,0 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="NA7uyejD8wAmR0rv" style="z-index:16;">
+                                <div id="vCCpENB9WjFUI9An"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <div id="VNgwOgPnE0ask7lx"
+                                        style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:center;width:100%;height:100%;">
+                                        <p id="qTLpWjWpPGGvclWN"
+                                            style="color:#000000;font-family:Mirza;line-height:1.39285714em;text-align:center;">
+                                            <span id="IGZXuT1PASbZF5Te" style="color:#000000;font-weight:700;">Safe
+                                                &amp;Secure</span>
+                                        </p>
+                                        <p id="PcPwluyXjKHLqowb"
+                                            style="color:#000000;font-family:Mirza;line-height:1.39285714em;text-align:center;">
+                                            <span id="faJUygGM4jQdyOTH" style="color:#000000;font-weight:700;">+</span>
+                                        </p>
+                                        <p id="zHKaE7yoiYsumMuI"
+                                            style="color:#000000;font-family:Mirza;line-height:1.39285714em;text-align:center;text-transform:none;letter-spacing:0em;">
+                                            <span id="Gbt8K26xrBjgJC0A"
+                                                style="color:#000000;font-weight:700;">Trustworthy</span>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cLy8c8UH8MjAAE0c">
+                    <div id="TTAgz3G5NfTThLXp" style="display:grid;position:relative;">
+                        <div id="n29zvRIJUT8fbQMd" style="z-index:8;">
+                            <div id="qS3LV6nBzw7br0Sv"
+                                style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                <svg id="VmgYcsIbcSmDQblJ" viewBox="0 0 131.7849 76.0599" preserveAspectRatio="none"
+                                    style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                    <g id="DfGg1uLFrTEGUVHC" style="transform:scale(1, 1);">
+                                        <path id="gPVDTqSVjYMxbK0I"
+                                            d="M10.00000335,0 L121.78484773,0 C127.30769707,0 131.78485107,4.477154 131.78485107,10.00000335 L131.78485107,66.05987977 C131.78485107,71.58272912 127.30769708,76.05988312 121.78484773,76.05988312 L10.00000335,76.05988312 C4.477154,76.05988312 0,71.58272912 0,66.05987977 L0,10.00000335 C0,4.477154 4.477154,0 10.00000335,0 Z"
+                                            style="fill:#b08e6a;opacity:1.0;"></path>
+                                    </g>
+                                </svg>
+                                <svg id="X19Lt9asBMU3Vtta" viewBox="0 0 124.4444 77.2294" preserveAspectRatio="none"
+                                    style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                    <g id="RCvKlPBoki5n1YMQ" style="transform:scale(1, 1);">
+                                        <path id="dd1DfUvi5cj02oY4"
+                                            d="M9.44299701,0 L115.00144574,0 C117.50588426,0 119.9077475,0.99488433 121.67865296,2.76578979 123.44955842,4.53669525 124.44444275,6.93855849 124.44444275,9.44299701 L124.44444275,67.78636548 C124.44444275,70.290804 123.44955842,72.69266724 121.67865296,74.4635727 119.9077475,76.23447816 117.50588426,77.22936249 115.00144574,77.22936249 L9.44299701,77.22936249 C4.22777377,77.22936249 0,73.00158872 0,67.78636548 L0,9.44299701 C0,4.22777377 4.22777377,0 9.44299701,0 Z"
+                                            style="fill:#b08e6a;opacity:1.0;"></path>
+                                    </g>
+                                </svg>
+                                <svg id="B2PyI593NlUg0Koh" viewBox="0 0 95.2778 63.0714" preserveAspectRatio="none"
+                                    style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                    <g id="wl8IaFAXLP1YK57F" style="transform:scale(1, 1);">
+                                        <path id="NNf17SCdIOpJdCkX"
+                                            d="M7.22979885,0 L88.04797977,0 C89.96544165,0 91.80436928,0.76170876 93.16021957,2.11755905 94.51606987,3.47340935 95.27777863,5.31233698 95.27777863,7.22979885 L95.27777863,55.84158939 C95.27777863,57.75905127 94.51606986,59.59797889 93.16021957,60.95382919 91.80436927,62.30967948 89.96544164,63.07138824 88.04797977,63.07138824 L7.22979885,63.07138824 C5.31233698,63.07138825 3.47340935,62.30967948 2.11755906,60.95382919 0.76170876,59.59797889 0,57.75905126 0,55.84158939 L0,7.22979885 C0,5.31233698 0.76170876,3.47340935 2.11755906,2.11755906 3.47340935,0.76170876 5.31233698,0 7.22979885,0 Z"
+                                            style="fill:#b08e6a;opacity:1.0;"></path>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div id="nfNFHi9Iwd93GWrb" style="z-index:17;">
+                            <div id="Zrl1eLjNQbXWH1RF"
+                                style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                <div id="EppC6iSVn7WPgsA6"
+                                    style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                                    <p id="hemC8rRZNFkaxepP"
+                                        style="color:#000000;font-family:Lora;line-height:1.3977098em;text-align:center;">
+                                        <span id="KvBABSEwtxN7IL5t" style="color:#000000;font-weight:700;">2) Secure
+                                            Transactions:</span>
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="sUUcLQIUV9cBJZxD" style="z-index:18;">
+                            <div id="PkoCJzHU37oqZH96"
+                                style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                <div id="unoy2wmbf3ivPt67"
+                                    style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                                    <p id="GVPFMeRik6Gzah04"
+                                        style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                        <span id="mgZfYecznE4vHDRG" style="color:#000000;">Articea uses secure payment
+                                            gateways to protect your financial information and ensure safe
+                                            transactions for both artists and customers.</span>
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="R72YKRXMmFLWaCWj">
+                    <div id="hSx3LJ2zYVUdOiPQ" style="display:grid;position:relative;">
+                        <div id="W7uECnH0SSPdXjUD" style="display:grid;position:relative;grid-area:2 / 2 / 3 / 3;">
+                            <div id="Sd0ZJZiBWwJi9dZd" style="z-index:11;">
+                                <div id="kMRyZrYC99CIoBzj"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <svg id="QTFv7qfmxtw93h7W" viewBox="0 0 131.7849 81.171" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="rXlORXBXeMhvRFSe" style="transform:scale(1, 1);">
+                                            <path id="AmzCRltKYxiVRvPN"
+                                                d="M10.00000335,0 L121.78484773,0 C127.30769707,0 131.78485107,4.477154 131.78485107,10.00000335 L131.78485107,71.17097138 C131.78485107,76.69382073 127.30769707,81.17097473 121.78484773,81.17097473 L10.00000335,81.17097473 C4.477154,81.17097473 0,76.69382073 0,71.17097138 L0,10.00000335 C0,4.477154 4.477154,0 10.00000335,0 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                    <svg id="WZm5rn0VmIAuPcq7" viewBox="0 0 124.4444 82.3405" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="hUDWEOkZCKGRyWHF" style="transform:scale(1, 1);">
+                                            <path id="OO3qzKhJivcO7ebQ"
+                                                d="M9.44299701,0 L115.00144574,0 C117.50588426,0 119.9077475,0.99488433 121.67865296,2.76578979 123.44955842,4.53669525 124.44444275,6.93855849 124.44444275,9.44299701 L124.44444275,72.89745709 C124.44444275,78.11268033 120.21666898,82.3404541 115.00144574,82.3404541 L9.44299701,82.3404541 C6.93855849,82.3404541 4.53669525,81.34556977 2.76578979,79.57466431 0.99488433,77.80375885 0,75.40189561 0,72.89745709 L0,9.44299701 C0,4.22777377 4.22777377,0 9.44299701,0 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                    <svg id="A2Yj6b4EHY7erRK5" viewBox="0 0 95.2778 69.2633" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="ZrZ5bu698NNNPmix" style="transform:scale(1, 1);">
+                                            <path id="QHs5k9m69MWLTU2e"
+                                                d="M7.22979885,0 L88.04797977,0 C89.96544165,0 91.80436928,0.76170876 93.16021957,2.11755905 94.51606987,3.47340935 95.27777863,5.31233698 95.27777863,7.22979885 L95.27777863,62.0335297 C95.27777863,63.95099157 94.51606986,65.7899192 93.16021957,67.14576949 91.80436927,68.50161979 89.96544164,69.26332855 88.04797977,69.26332855 L7.22979885,69.26332855 C5.31233698,69.26332855 3.47340935,68.50161979 2.11755906,67.1457695 0.76170876,65.7899192 0,63.95099157 0,62.0335297 L0,7.22979885 C0,5.31233698 0.76170876,3.47340935 2.11755906,2.11755906 3.47340935,0.76170876 5.31233698,0 7.22979885,0 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="JeaMMD3Gfe7Jxxlt" style="z-index:12;">
+                                <div id="kwl6qmFH9KIPgss0"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <div id="cbrfk28cYPmKqi0s"
+                                        style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                                        <p id="z1OJMFKdnhISib1N"
+                                            style="color:#000000;font-family:Lora;line-height:1.3977098em;text-align:center;">
+                                            <span id="zZki5tSYqE0WXbei" style="color:#000000;font-weight:700;">4)
+                                                Transparency:</span>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="lZMePDZVShPWCwDH" style="z-index:13;">
+                                <div id="x5xg5rAqOrPpdZv6"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <div id="F1mzcpx1eGFRo91l"
+                                        style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                                        <p id="A0XVPhimTCPyJZ2F"
+                                            style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                            <span id="dYHiCCtJ0vP6sqPT" style="color:#000000;">We ensure that there
+                                                will be no intermediary between customer and artists. You can directly
+                                                purchase &amp;chat with artists for customize products.</span>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <a id="page-4" aria-hidden="true" style="visibility:hidden;"></a>
+        <section id="YKJZRJE9wYbNW7yH"
+            style="position:relative;overflow:hidden;display:grid;align-items:center;grid-template-columns:auto 100rem auto;z-index:0;margin-top:-1px;user-select: none;">
+            <div id="XhmRh68rzGu2aIOh"
+                style="grid-area:1 / 1 / 2 / 4;display:grid;position:absolute;min-height:100%;min-width:100%;">
+                <div id="bdMZg2npcwZUpWIM" style="z-index:0;">
+                    <div id="JjBtJS6ACMBf93cm"
+                        style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                        <div id="LeBumTmoSA4ILNdI" style="width:100%;height:100%;opacity:1.0;">
+                            <div id="VexxGpCS5PFCsyn0"
+                                style="background-color:#ffffff;opacity:1.0;transform:scale(1, 1);width:100%;height:100%;overflow:hidden;position:relative;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Vnb2ESBrnmeqaNxY" style="display:grid;position:relative;grid-area:1 / 2 / 2 / 3;">
+                <div id="TXbb3t5iMpAJN73w">
+                  <div id="f2wGy6KPJN19C41O" style="display:grid;position:relative;grid-area:2 / 4 / 3 / 5;">
+                    <div id="eZ8kMta3rCxBnDrM" style="display:grid;position:relative;grid-area:2 / 2 / 3 / 3;">
+                      <div id="CwJ7eiqoi5EZfc0M" style="z-index:2;">
+                        <div id="B6un6aHY8TJUIMwY" style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                          <svg id="CRyodQOcDs0sTuaR" viewBox="0 0 30.0525 11.7824" preserveAspectRatio="none"
+                            style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                            <g id="OdHJj4LURlFbY3gP" style="transform:scale(1, 1);">
+                              <path id="ibzsNSdZskWVzQuc"
+                                d="M1.97530799,0 L28.07720132,0 C28.60108557,0 29.10351289,0.20811221 29.47395499,0.57855432 29.8443971,0.94899642 30.05250931,1.45142374 30.05250931,1.97530799 L30.05250931,9.80711598 C30.05250931,10.89804846 29.1681338,11.78242397 28.07720132,11.78242397 L1.97530799,11.78242397 C1.45142374,11.78242397 0.94899642,11.57431176 0.57855431,11.20386966 0.20811221,10.83342755 0,10.33100023 0,9.80711598 L0,1.97530799 C0,0.88437551 0.88437551,0 1.97530799,0 Z"
+                                style="fill:#b08e6a;opacity:1.0;"></path>
+                            </g>
+                          </svg></div>
+                      </div>
+                      <div id="mEu7bZtYExDvWrtO" style="z-index:3;">
+                        <div id="TIlzpdHytsQj9Cwy" style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                          <div id="MwZPVo5vKHRdPMwz"
+                            style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:center;width:100%;height:100%;">
+                            <p id="Mu0YBTOauR2KbXyY"
+                              style="color:#000000;font-family:Mirza;line-height:1.36956373em;text-align:center;text-transform:none;letter-spacing:0em;">
+                              <span id="aRPPZ9naVsWqby0t" style="color:#000000;font-weight:700;">Our Motive</span><br></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="JyLpKiYspxVuKwSN" style="z-index:4;">
+                  <div id="yrGU1TVcA9OV2snT" style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                    <div id="byHMQuTwvRAzt1Z7"
+                      style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                      <p id="W9Eguly5ZFDDic9l"
+                        style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.3977098em;text-align:center;"><span
+                          id="F3AxfHMetZ1e1c9t" style="color:#000000;">At Articea, our mission is to create a thriving ecosystem
+                          that bridges the gap between talented artists and appreciative customers worldwide. We believe in the
+                          power of creativity and the unique value of handmade products. Our primary motive is to empower
+                          artists by providing them with a platform to showcase their work, gain recognition, and earn a
+                          sustainable income. </span><br></p>
+                    </div>
+                  </div>
+                </div>
+                <div id="L2FJvChzD5u7BWi2" style="z-index:5;">
+                  <div id="EAqFGFRAxIftJATn" style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                    <div id="TGrlQA16aKYxEOFX"
+                      style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                      <p id="ZTyhs4AukKVOhUCb"
+                        style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;"><span
+                          id="WlaWm6QGukUajfip" style="color:#000000;font-weight:700;">1) Empowering Artists:</span><span
+                          id="H6prIhmbHx3jEAkY" style="color:#000000;"> </span></p>
+                      <p id="LNcXMoGzkEkuV6ra"
+                        style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;"><span
+                          id="y32drHZ0ISgXkMC7" style="color:#000000;">We aim to support artists from all walks of life, whether
+                          they are just starting out, pursuing their craft as a hobby, or are established professionals. By
+                          offering a dedicated space for their creations, we help them reach a broader audience and gain the
+                          appreciation they deserve. Our platform is designed to highlight the unique stories and skills behind
+                          each piece, giving artists the visibility they need to thrive.</span><br></p>
+                      <p id="ZpracRvBBnq49YQB"
+                        style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;white-space:pre;">
+                        <br></p>
+                      <p id="ZCnXWpbCh7rLrZ0q"
+                        style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;"><span
+                          id="kOmuNoP7GJLKDaqZ" style="color:#000000;font-weight:700;">2) </span><span id="o4OClt5RiHlU3bW3"
+                          style="color:#000000;font-weight:700;">Promoting Authenticity and Craftsmanship: </span><span
+                          id="S7aYN9gJYdKNsVi6" style="color:#000000;"> </span><br></p>
+                      <p id="YK6CNu2qbk3Wl9Zh"
+                        style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;"><span
+                          id="YVblf7MwlB4ULEWk" style="color:#000000;">In a world dominated by mass-produced goods, Articea
+                          stands out by offering products that are truly one-of-a-kind. We are committed to promoting the value
+                          of authenticity and the beauty of handmade artistry. Each item on our platform is crafted with love
+                          and care, reflecting the unique touch of the artist behind it.</span><br></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </section>
+        <a id="page-5" aria-hidden="true" style="visibility:hidden;"></a>
+        <section id="u4LbnBv5IifMxOCb"
+            style="position:relative;overflow:hidden;display:grid;align-items:center;grid-template-columns:auto 100rem auto;z-index:0;margin-top:-1px;user-select: none;">
+            <div id="nEdewFgxWbAkv4oW"
+                style="grid-area:1 / 1 / 2 / 4;display:grid;position:absolute;min-height:100%;min-width:100%;">
+                <div id="q73Z0kq6NzyOmGYh" style="z-index:0;">
+                    <div id="Ck9xorPLZXg8aBPH"
+                        style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                        <div id="Dqj6ANP7evRA0kjH" style="width:100%;height:100%;opacity:1.0;">
+                            <div id="iKDGqi8ULA2FVHVk"
+                                style="background-color:#ffffff;opacity:1.0;transform:scale(1, 1);width:100%;height:100%;overflow:hidden;position:relative;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mXgLH8hnQz6g4pSi" style="display:grid;position:relative;grid-area:1 / 2 / 2 / 3;">
+                <div id="FTL7A5rIUpK1Drdv" style="z-index:1; background-image: url(images/icon/BG-Img.png); background-repeat: no-repeat; background-position: center; background-size: contain;">
+                    <div id="n0H4j0PQKBUgsoy3"
+                        style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                        <div id="uCO5s2dVqKdwI5pO"
+                            style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                            <p id="pUORY3VlSkw6zG4J"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                <span id="r1Oz9tqxxwEKqUKR" style="color:#000000;font-weight:700;">3) Fostering a
+                                    Supportive Community:</span>
+                                <br>
+                            </p>
+                            <p id="Pwqn0JfMoUKWn3os"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                <span id="Pv7kLxJ0tRYVHgT4" style="color:#000000;">We believe in the power of community.
+                                    By connecting artists with customers who value and support their work, we create a
+                                    vibrant, supportive network that fosters creativity and mutual appreciation. Our
+                                    platform encourages interaction and engagement through artist spotlights, stories,
+                                    and virtual events, enriching the experience for both artists and customers.</span>
+                                <br>
+                            </p>
+                            <p id="fN6c4ymzShyFXBwX"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:0.39772886em;text-align:center;white-space:pre;">
+                                <br>
+                            </p>
+                            <p id="e5cJB9JSyZzbClLC"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                <span id="Z1TvsBwhGM4OlgIE" style="color:#000000;font-weight:700;">4) Ensuring
+                                    Affordability:</span>
+                                <br>
+                            </p>
+                            <p id="JphKMzargSqOl7kz"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                <span id="QJXB6qZ0Lfh58UtI" style="color:#000000;">We are dedicated to making beautiful,
+                                    handmade products accessible to everyone. By eliminating unnecessary markups and
+                                    connecting customers directly with artists, we ensure that our products are
+                                    affordable without compromising on quality. This approach allows customers to
+                                    purchase unique items at pocket-friendly prices while supporting the artists who
+                                    create them.</span>
+                            </p>
+                            <p id="cOVFBU2AJQD9mnWx"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:0.39772886em;text-align:center;white-space:pre;">
+                                <br>
+                            </p>
+                            <p id="WNNdR4k3NfRIs1YC"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                <span id="SEYI0neVcZFObCq5" style="color:#000000;font-weight:700;">5) Building a Global
+                                    Network: </span>
+                                <br>
+                            </p>
+                            <p id="vWDOERhWPKjtMbjw"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                <span id="DT1Lki5YVmhmHwLm" style="color:#000000;">Articea is committed to inclusivity
+                                    and diversity. We welcome artists from all corners of the world, from small
+                                    villages and tribal communities to bustling cities. Our platform provides a global
+                                    stage for these artists, enabling them to share their culture, traditions, and
+                                    creative expressions with a worldwide audience.</span>
+                                <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <a id="page-6" aria-hidden="true" style="visibility:hidden;"></a>
+        <section id="C6kX9O68JZa2mQDs"
+            style="position:relative;overflow:hidden;display:grid;align-items:center;grid-template-columns:auto 100rem auto;z-index:0;margin-top:-1px;user-select: none;">
+            <div id="nsaagozAmKWLcDL1"
+                style="grid-area:1 / 1 / 2 / 4;display:grid;position:absolute;min-height:100%;min-width:100%;">
+                <div id="im9WUa6mk736eId9" style="z-index:0;">
+                    <div id="dHqWosKN4MjWNaY2"
+                        style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                        <div id="EmkgoeYdSZ212vl6" style="width:100%;height:100%;opacity:1.0;">
+                            <div id="X6hiffhVPMstTKoP"
+                                style="background-color:#ffffff;opacity:1.0;transform:scale(1, 1);width:100%;height:100%;overflow:hidden;position:relative;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="rFkB5JsNbJ02l5Di" style="display:grid;position:relative;grid-area:1 / 2 / 2 / 3;">
+                <div id="vxEtzCt5L03RJpyP" style="z-index:1;">
+                    <div id="sa94t7OX5t5Q0ndP"
+                        style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                        <div id="bJZyISee47dwjZFH"
+                            style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:flex-start;width:100%;height:100%;">
+                            <p id="kgJi1XWYPz3fk0KN"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                <span id="H7367L7b3p87KfLm" style="color:#000000;font-weight:700;">6) Sustaining
+                                    Creative Passion: </span>
+                                <br>
+                            </p>
+                            <p id="orOSI4D7UOlPAgXz"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                <span id="cP6KwKZAJNYvA1tA" style="color:#000000;">Ultimately, our goal is to sustain
+                                    and nurture the creative passion of artists. By providing them with the tools and
+                                    support they need to succeed, we help them continue to do what they love. Every
+                                    purchase made on Articea directly contributes to this mission, helping artists grow
+                                    and thrive.</span>
+                            </p>
+                            <p id="JDek5KJ57O7hHH1f"
+                                style="color:#000000;font-family:YAFyRvAPgsk-1;line-height:0.99286585em;text-align:center;white-space:pre;">
+                                <br>
+                            </p>
+                            <p id="opRSbzH2Am1J5CtP"
+                                style="color:#000000;font-family:'Times New Roman', Times, serif;line-height:1.39772886em;text-align:center;">
+                                <span id="o2nY7tS8fKdPxQWp" style="color:#000000;">Thank you for being a part of
+                                    Articea. Together, we can celebrate and support the incredible talent and
+                                    creativity of artists around the world.</span>
+                                <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="s2GqWNYgaR1twr0O">
+                    <div id="baSFHMfy642LZBE1" style="display:grid;position:relative;">
+                        <div id="ocqMz4e1zh1wWXTg" style="display:grid;position:relative;grid-area:2 / 2 / 3 / 3;">
+                            <div id="JyqNf3864ZJro3aa" style="z-index:3;">
+                                <div id="Pk4gBJ6AO1uQWpd2"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <svg id="ZZwlWRosDePFRh4m" viewBox="0 0 379.4444 53.1877" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="vKGawMAbmYKMZe4s" style="transform:scale(1, 1);">
+                                            <path id="fjVRALSjuGWXYMZE"
+                                                d="M0,0 L379.44444444,0 L379.44444444,53.1876917 L0,53.1876917 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                    <svg id="gPolFavbyl8Gljju" viewBox="0 0 266.6667 44.7378" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="OQsDyICIxia3Y8yh" style="transform:scale(1, 1);">
+                                            <path id="sKmzcuBcAWrBckbj"
+                                                d="M0,0 L266.66666667,0 L266.66666667,44.73781262 L0,44.73781262 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                    <svg id="ktFt8nkkRDG0d51E" viewBox="0 0 195.5556 35.1302" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="CIIxq6F9eWoVH2dL" style="transform:scale(1, 1);">
+                                            <path id="miD323ISIOM02z0A"
+                                                d="M0,0 L195.55555556,0 L195.55555556,35.13018362 L0,35.13018362 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                    <svg id="j1MAUYYMmfIQcIxh" viewBox="0 0 124.4444 23.9008" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="WTyJSLd2M67CW9GO" style="transform:scale(1, 1);">
+                                            <path id="yWoZkcLV5PMhG6H2"
+                                                d="M0,0 L124.44444444,0 L124.44444444,23.90080921 L0,23.90080921 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                    <svg id="c12ChfMVHY94klQP" viewBox="0 0 95.2778 19.9602" preserveAspectRatio="none"
+                                        style="width:100%;height:100%;opacity:1.0;overflow:hidden;position:absolute;top:0%;left:0%;background:url(&#x27;data:image/png;base64,&#x27;);">
+                                        <g id="RHayd7oeBU3wXoDB" style="transform:scale(1, 1);">
+                                            <path id="b1QMMSaZbHhTEKs8"
+                                                d="M0,0 L95.27777778,0 L95.27777778,19.96018012 L0,19.96018012 Z"
+                                                style="fill:#b08e6a;opacity:1.0;"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="uKitcHTSIu8G5J5p" style="z-index:4;">
+                                <div id="ZcUSI2vMwp5PqVZe"
+                                    style="box-sizing:border-box;width:100%;height:100%;transform:rotate(0deg);">
+                                    <div id="Z8HrnhEPzAzmbB3v"
+                                        style="opacity:1.0;display:flex;box-sizing:border-box;flex-direction:column;justify-content:center;width:100%;height:100%;">
+                                        <p id="SbjInh4j9ftvD05d"
+                                            style="color:#000000;font-family: Mirza, sans-serif;line-height:1.36911281em;text-align:center;text-transform:none;letter-spacing:0em;">
+                                            <span id="rD9ejyI4uv7RPmad"
+                                                style="color:#000000;font-weight:1000;user-select: none;">Copyright
+                                                &copy; 2024 UHT Articea&trade;, All Rights Reserved.</span>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- The End -->
+    </div>
+    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
